@@ -1,0 +1,118 @@
+{% extends "miApp/base.html" %} {% block content %} {% load static %}
+<!-------------------CARRUSEL------------------>
+<div id="demo" class="carousel slide" data-ride="carousel">
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+        <li data-target="#demo" data-slide-to="3"></li>
+        <li data-target="#demo" data-slide-to="4"></li>
+        <li data-target="#demo" data-slide-to="5"></li>
+    </ul>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'miApp/img/1.jpg' %}" alt="Los Angeles" width="1100" height="500">
+            <div class="carousel-caption">
+                <h3>Los Angeles</h3>
+                <p>We had such a great time in LA!</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'miApp/img/colocolo.jpg' %}" alt="Chicago" width="1100" height="500">
+            <div class="carousel-caption">
+                <h3>Chicago</h3>
+                <p>Thank you, Chicago!</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'miApp/img/coronavirus.jpg' %}" alt="New York" width="1100" height="500">
+            <div class="carousel-caption">
+                <h3>New York</h3>
+                <p>We love the Big Apple!</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'miApp/img/playa.jpg' %}" alt="New York" width="1100" height="500">
+            <div class="carousel-caption">
+                <h3>New York</h3>
+                <p>We love the Big Apple!</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'miApp/img/2.jpg' %}" alt="New York" width="1100" height="500">
+            <div class="carousel-caption">
+                <h3>New York</h3>
+                <p>We love the Big Apple!</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'miApp/img/viajes.jpg' %}" alt="New York" width="1100" height="500">
+            <div class="carousel-caption">
+                <h3>New York</h3>
+                <p>We love the Big Apple!</p>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+</div>
+
+<!--tarjetas de noticias-->
+<!--------------------------------------------------------------------------------------------------------------------->
+
+
+{% for n in noticias %}
+<div class="container">
+    <div class="row">
+        <div class="card-deck">
+            <div class="card">
+                {% if n.imagen %}
+                <img src="{{ n.imagen.url }}" class="card-img-top" alt="..."> {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ n.tituloNoticia | capfirst }}</h5>
+                    <p class="card-text">{{ n.descripcioCorta | capfirst }}</p>
+                    <a href="{% url 'tarjetaNoticia' %}" class=" btn btn-outline-primary w-100 ">Ver más...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endfor %}
+
+
+
+
+<!-- Clima -->
+<center>
+    <div class="card text-white bg-dark mb-6 " style="max-width: 20rem; ">
+        <div class="app-title ">
+            <p>Tiempo</p>
+        </div>
+        <div class="notification "> </div>
+        <div class="weather-container ">
+            <div class="weather-icon ">
+                <img src="{% static 'miApp/icons/unknown.png' %} " alt="icon ">
+            </div>
+            <div class="temperature-value ">
+                <p>- °<span>C</span></p>
+            </div>
+            <div class="temperature-description ">
+                <p> - </p>
+            </div>
+            <div class="location ">
+                <p>-</p>
+            </div>
+            <button onclick="window.location.reload(); " class="refresh "><i class="fa fa-refresh "
+                    aria-hidden="true "></i></button>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js "></script>
+    <script src="{% static 'miApp/js/clima.js' %} "></script>
+</center>
+<br> {% endblock %}
