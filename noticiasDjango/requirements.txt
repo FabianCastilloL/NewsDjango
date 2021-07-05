@@ -1,0 +1,4 @@
+django == 3.2.3
+pillow
+django-crispy-forms
+django-rest-framework
